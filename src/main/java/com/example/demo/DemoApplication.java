@@ -7,6 +7,10 @@ package com.example.demo;
 		import org.springframework.web.bind.annotation.RestController;
 		import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 		import java.time.LocalTime;
+		import java.util.HashMap;
+		import java.util.LinkedHashMap;
+		import java.util.Map;
+		import java.util.concurrent.atomic.AtomicInteger;
 
 
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
@@ -15,8 +19,9 @@ public class DemoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
+	private AtomicInteger counter = new AtomicInteger(0);
 	@GetMapping("/hello")
-	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+	public Map<String, Object> hello(@RequestParam(value = "name", defaultValue = "World") String name) {
 		LocalTime time=LocalTime.now();
 		String greeting;
 		if (time.isBefore(LocalTime.NOON)) {
@@ -26,6 +31,12 @@ public class DemoApplication {
 		} else {
 			greeting = "Good evening";
 		}
-		return String.format("Hello %s, %s!", name, greeting);
+		int visit=counter.incrementAndGet();
+
+		Map<String, Object> response = new LinkedHashMap<>();
+		response.put("greeting", greeting);
+		response.put("name", name);
+		response.put("visitorNumber", visit);
+		return response;
 	}
 }
