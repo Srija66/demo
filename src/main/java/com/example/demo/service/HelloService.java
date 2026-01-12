@@ -1,17 +1,15 @@
-package com.example.demo;
+package com.example.demo.service;
 
+import com.example.demo.dto.HelloResponse;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalTime;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class HelloService {
     private AtomicInteger counter = new AtomicInteger(0);
-    public Map<String, Object> buildGreeting(String name) {
+    public HelloResponse buildGreeting(String name) {
         LocalTime time=LocalTime.now();
         String greeting;
         if (time.isBefore(LocalTime.NOON)) {
@@ -23,11 +21,7 @@ public class HelloService {
         }
         int visit=counter.incrementAndGet();
 
-        Map<String, Object> response = new LinkedHashMap<>();
-        response.put("greeting", greeting);
-        response.put("name", name);
-        response.put("visitorNumber", visit);
-        return response;
+        return new HelloResponse(greeting, name, visit);
     }
 
 }
