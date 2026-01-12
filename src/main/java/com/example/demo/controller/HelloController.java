@@ -3,10 +3,8 @@ package com.example.demo.controller;
 import com.example.demo.dto.HelloRequest;
 import com.example.demo.dto.HelloResponse;
 import com.example.demo.service.HelloService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
 @RestController
 @RequestMapping("/hello")
 public class HelloController {
