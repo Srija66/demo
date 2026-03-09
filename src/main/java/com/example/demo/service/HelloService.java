@@ -15,9 +15,11 @@ public class HelloService {
 
     private AtomicInteger counter = new AtomicInteger(0);
 
+
     public HelloService(VisitorRepository repository) {
         this.repository = repository;
     }
+
 
 
     public HelloResponse buildGreeting(String name) {
@@ -33,11 +35,13 @@ public class HelloService {
             greeting = "Good evening";
         }
 
+
         int visit = counter.incrementAndGet();
 
         repository.saveVisitor(name);
 
         List<String> recentVisitors = repository.getRecentVisitors();
+
 
         return new HelloResponse(greeting, name, visit, recentVisitors);
     }
