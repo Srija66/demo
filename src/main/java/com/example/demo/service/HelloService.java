@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.VisitorRepository;
+import com.example.demo.repository.VisitorRepository;
 import com.example.demo.dto.HelloResponse;
 import org.springframework.stereotype.Service;
 

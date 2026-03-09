@@ -1,7 +1,7 @@
-package com.example.demo;
+package com.example.demo.service;
 
 import com.example.demo.dto.HelloResponse;
-import com.example.demo.service.HelloService;
+import com.example.demo.repository.VisitorRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
